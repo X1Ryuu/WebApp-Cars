@@ -11,9 +11,9 @@ import { OAuthService } from 'angular-oauth2-oidc';
   selector: 'app-brand-edition',
   standalone: true,
   imports: [
-    NgForOf,
+
     /*    RouterLink,*/
-    NgIf,
+
     ReactiveFormsModule,
     FormsModule,
   ],
@@ -79,7 +79,7 @@ export class BrandEditionComponent {
     if(!this.oauthService.hasValidAccessToken())this.oauthService.refreshToken();
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.oauthService.getAccessToken()}`// Przekazywanie tokenu
+      'Authorization': `Bearer ${this.oauthService.getAccessToken()}`
     });
     console.log('headers: '+JSON.stringify(headers));
     console.log('link: '+this.url);
@@ -92,8 +92,8 @@ export class BrandEditionComponent {
           console.log('Registration successful:', response);
         },
         error => {
-          if (error.status === 409) { // Status 409 dla konfliktu (użytkownik istnieje)
-            this.errorMessage = error.error; // Przypisanie komunikatu błędu
+          if (error.status === 409) {
+            this.errorMessage = error.error;
           } else {
             this.errorMessage = 'An unexpected error occurred. Please try again later.';
           }

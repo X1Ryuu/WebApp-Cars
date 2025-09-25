@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {NgForOf, NgIf} from '@angular/common';
 import {ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {BreadcrumbService} from '../../../services/breadcrumbs/breadcrumb.service';
@@ -12,8 +11,7 @@ import {AuthService} from "../../../services/auth/auth.service";
   selector: 'app-breadcrumb',
   standalone: true,
     imports: [
-        NgForOf,
-        NgIf,
+
         RouterLink,
         RouterOutlet,
         AddModalComponent,
@@ -30,24 +28,24 @@ export class BreadcrumbComponent implements OnInit{
   breadcrumbs: Array<{ label: string, url: string }> = [];
   private breadcrumbSubscription: Subscription | null = null;
   type: string | undefined;
-  ticked: boolean = false;
+  ticked: boolean = true;
 
   constructor(private breadcrumbService: BreadcrumbService, private route: ActivatedRoute, public authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    const exampleModal = document.getElementById('exampleModal');
+    console.log(exampleModal);
     this.breadcrumbSubscription = this.breadcrumbService.breadcrumbs$.subscribe(
       (breadcrumbs) => {
         this.breadcrumbs = breadcrumbs;
       }
     );
-    this.route.data.subscribe(data => {
-      this.type = data['type'];
-    });
+
       this.router.events.pipe(
           filter(event => event instanceof NavigationEnd)
       ).subscribe(() => {
-          console.log('Obecny URL:', this.router.url);
-          console.log('Breadcrumbs:', this.breadcrumbs);
+/*          console.log('Obecny URL:', this.router.url);
+          console.log('Breadcrumbs:', this.breadcrumbs);*/
       });
   }
 

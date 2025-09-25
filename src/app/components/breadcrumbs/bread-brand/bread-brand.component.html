@@ -1,16 +1,11 @@
 
-<!--<p>bread-brand works!</p>-->
 
 <div class="d-flex flex-wrap  justify-content-center">
-  <div class="brand-item my-2 mx-2" *ngFor="let brand of brands">
-<!--
-    <a (click)="selectBrand(brand)">{{ brand.name }}</a>
--->
-    <div class="brand-item-container">
-      <app-brand  [brand]="brand" [routerLink]="['/archives', brand.name]"></app-brand>
-    </div>
-
-
-  </div>
+    @for(brand of brands; track brand){
+        <div class="brand-item my-2 mx-2">
+            <div class="brand-item-container">
+                <app-item [name]="brand.name" [type]="'brand'" (click)="getNavigationPath(brand)"></app-item>
+            </div>
+        </div>
+    }
 </div>
-

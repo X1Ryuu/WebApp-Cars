@@ -1,16 +1,14 @@
 
 
- <!-- <nav class="navbar navbar-light navbar-expand-lg bg-body-tertiary">-->
-  <nav class="navbar navbar-light navbar-expand-lg border">
-<!--  <nav class="navbar navbar-expand-lg">-->
-    <div class="container-fluid">
-<!--      <a class="navbar-brand ms-2" href="">Navbar</a>-->
-      <a class="navbar-brand ms-2">Archive</a>
+  <nav class="navbar mx-auto navbar-expand-lg sticky-top">
+
+    <div class="container-fluid navbar-body d-flex text-center align-items-center">
+      <div class="navbar-nav ms-2 mx-2 px-3 logo-name"><a class="fs-2">Farco</a></div>
       <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page"  routerLink="/">Home</a>
           </li>
@@ -21,47 +19,29 @@
                 <a class="nav-link active" aria-current="page"  routerLink="/">Used cars</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  routerLink="/archives">Archives</a>
+                <a class="nav-link active" aria-current="page"  routerLink="/specs">Specifications</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  routerLink="/">About me</a>
+                <a class="nav-link active" aria-current="page"  routerLink="/">About us</a>
             </li>
-<!--            <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  routerLink="/">Home</a>
-            </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Vehicles
-            </a>
-            <ul class="dropdown-menu">
 
-                <li class="drop-field">
-                    <a class="nav-link px-3"
-                       routerLink="/archives">&lt;!&ndash;Contacts&ndash;&gt;Archives</a>
-                </li>
-                <li class="drop-field">
-                    <a class="nav-link px-3"
-                       routerLink="/sales">&lt;!&ndash;Contacts&ndash;&gt;For Sale</a>
-                </li>
-            </ul>
-          </li>-->
-          <li class="nav-item">
-            <a *ngIf="authService.isAble" aria-current="page" class="nav-link active" href="http://localhost:8080/h2-console">H2 DB</a>
-          </li>
-<!--          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>-->
+            <li class="nav-item">
+                @if(authService.isAble){
+                    <a aria-current="page" class="nav-link active" href="http://localhost:8080/h2-console">H2 DB</a>
+                }
+            </li>
+
         </ul>
-        <form class="d-flex" role="search">
-          <div class="input-group">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          </div>
-        </form>
+
         <ul class="navbar-nav mb-2 mb-lg-0 me-5">
 
           <li class="nav-item">
-            <a *ngIf="!authService.isLoggedIn()" aria-current="page" class="nav-link active" (click)="login()">Login</a>
-            <a *ngIf="authService.isLoggedIn()" aria-current="page" class="nav-link active" (click)="logout()">Logout</a>
+              @if(authService.isLoggedIn()){
+                  <a aria-current="page" class="nav-link active" (click)="logout()">Logout</a>
+
+              }@else{
+                  <a aria-current="page" class="nav-link active" (click)="login()">Login</a>
+              }
           </li>
 
 

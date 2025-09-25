@@ -1,28 +1,20 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {BrandEditionComponent} from '../brand-edition/brand-edition.component';
 import {ModelEditionComponent} from '../model-edition/model-edition.component';
-import {BreadcrumbComponent} from '../../../breadcrumbs/breadcrumb/breadcrumb.component';
-import {RouterLink, RouterOutlet} from '@angular/router';
+
 import {Subscription} from 'rxjs';
 import {BreadcrumbService} from '../../../../services/breadcrumbs/breadcrumb.service';
-import {AddModalComponent} from '../../modals/add-modal/add-modal.component';
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-edition-pills',
   standalone: true,
   imports: [
 
-    NgIf,
-
-    NgClass,
-
-    /*NgForOf,
-    RouterOutlet,
-    RouterLink,*/
 
     BrandEditionComponent,
-    ModelEditionComponent
+    ModelEditionComponent,
+    NgClass
   ],
   templateUrl: './edition-pills.component.html',
   styleUrl: './edition-pills.component.css'

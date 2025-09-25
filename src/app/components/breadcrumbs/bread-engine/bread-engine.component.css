@@ -1,0 +1,85 @@
+.engine-table {
+    flex: 1;              /* każda zajmie równą część wiersza */
+    min-width: 40%;     /* opcjonalnie, żeby nie były zbyt wąskie */
+    padding: 10px;
+    max-width: 50%;
+}
+
+.main-cont{
+    user-select: none;
+}
+
+.pb-div{
+    border-color: #2fb312 !important;
+    .symbol{
+        width: 35px;
+        aspect-ratio: 1/1;
+        background-color: #2fb312;
+        display: flex;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.item:hover{
+    cursor: pointer;
+}
+
+.diesel-div{
+    border-color: #333333 !important;
+    .symbol{
+        height: 35px;
+
+
+        background-color: #333333;
+        display: flex;
+        font-weight: bold;
+        color: white;
+
+    }
+}
+
+
+
+
+.plugin-pb-div{
+    border-color: #2fb312 !important;
+    .symbol{
+        height: 35px;
+
+        background: #2FB312;
+        background: linear-gradient(139deg,rgba(47, 179, 18, 1) 0%, rgba(51, 51, 51, 1) 100%);
+        display: flex;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+
+.electric-div{
+    border-color: #5f5fff !important;
+    .symbol{
+        height: 35px;
+
+        background-color: #5f5fff;
+        display: flex;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+
+.plugin-diesel-div{
+    border-color: #333333 !important;
+
+    .symbol{
+        height: 35px;
+
+        background: #5F5FFF;
+        background: linear-gradient(139deg,rgba(95, 95, 255, 1) 0%, rgba(51, 51, 51, 1) 100%);
+        display: flex;
+        font-weight: bold;
+        color: white;
+    }
+}
+

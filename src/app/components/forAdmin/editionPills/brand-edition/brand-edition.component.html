@@ -16,23 +16,26 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let brand of brands">
+  @for(brand of brands; track brand){
+      <tr>
 
-    <td class="only-td align-middle">
-      <input class="form-check-input" type="checkbox" [value]="brand.id"
-             (change)="toggleBrandSelection(brand.id)" [checked]="selectedBrands.includes(brand.id)">
-<!--      <div class="form-check">
+          <td class="only-td align-middle">
+              <input class="form-check-input" type="checkbox" [value]="brand.id"
+                     (change)="toggleBrandSelection(brand.id)" [checked]="selectedBrands.includes(brand.id)">
+              <!--      <div class="form-check">
 
-      </div>-->
-    </td>
+                    </div>-->
+          </td>
 
-    <td>{{ brand.name }}</td>
-    <td>{{ brand.logo }}</td>
-    <td>{{ brand.name }}</td>
-<!--
-    <td><a class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" (click)="onOpenModalEdit(brand)"><i class="fa fa-pencil"></i></a></td>
--->
-  </tr>
+          <td>{{ brand.name }}</td>
+          <td>{{ brand.logo }}</td>
+          <td>{{ brand.name }}</td>
+          <!--
+              <td><a class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" (click)="onOpenModalEdit(brand)"><i class="fa fa-pencil"></i></a></td>
+          -->
+      </tr>
+  }
+
   </tbody>
 </table>
 
@@ -54,19 +57,27 @@
           <div class="mb-3">
             <label for="name-add" class="form-label">Name</label>
             <input type="text" class="form-control" formControlName="name" id="name-add" name="name" required>
-            <div *ngIf="brandAddForm.get('name')?.invalid && brandAddForm.get('name')?.touched" class="text-danger">
-              Please enter brand name.
-            </div>
+              @if(brandAddForm.get('name')?.invalid && brandAddForm.get('name')?.touched){
+                  <div class="text-danger">
+                      Please enter brand name.
+                  </div>
+              }
+
           </div>
           <div class="mb-3">
             <label for="logo-add" class="form-label">LogoUrl</label>
             <input type="text" class="form-control" formControlName="logo" id="logo-add" name="logo" required>
-            <div *ngIf="brandAddForm.get('logo')?.invalid && brandAddForm.get('logo')?.touched" class="text-danger">
-              Please enter logo URL.
-            </div>
-          </div>
+              @if(brandAddForm.get('logo')?.invalid && brandAddForm.get('logo')?.touched){
+                  <div class="text-danger">
+                      Please enter logo URL.
+                  </div>
+              }
 
-          <div *ngIf="reallyTouched()">Formularz jest niepoprawny!</div>
+          </div>
+            @if(reallyTouched()){
+                <div>Formularz jest niepoprawny!</div>
+
+            }
 
 
         </form>

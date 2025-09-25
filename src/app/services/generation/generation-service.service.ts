@@ -19,26 +19,25 @@ export class GenerationService {
   }
 
   public getGenerationsByModel(nameId: number): Observable<Generation[]>{
-    console.log(nameId);
+ //   console.log(nameId);
     return this.http.get<Generation[]>(`${this.generationsUrl}/${nameId}`);
   }
 
-  public getGenerationsByModelName(name: string | null): Observable<Generation[]>{
+/*  public getGenerationsByModelName(name: string | null): Observable<Generation[]>{
     //console.log("Modelname: ", name);
-    return this.http.get<Generation[]>(`${this.generationsUrl}/${name}`);
-  }
+    return this.http.get<Generation[]>(`${this.generationsUrl}/name/${name}`);
+  }*/
 
 
 
   public addGeneration(generation: any){
     console.log("Generation: "+generation);
-    const token = this.oauthService.getAccessToken(); // Get the JWT token
+    const token = this.oauthService.getAccessToken();
     return this.http.post(`${this.generationsUrl}/add`, generation, {
       headers: {
-        'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+        'Authorization': `Bearer ${token}`
       }
     });
-    /*    return this.http.post<Brand>(`${this.brandsUrl}/add`, brand);*/
   }
 
   public updateBrand(generation: Generation) :Observable<Generation> {

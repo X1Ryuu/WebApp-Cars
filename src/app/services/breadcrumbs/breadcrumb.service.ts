@@ -22,7 +22,7 @@ export class BreadcrumbService {
     });
   }
 
-  private createBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: Array<{ label: string, url: string }> = []): Array<{ label: string, url: string }> {
+  private createBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: Array<{ label: string, url: string}> = []): Array<{ label: string, url: string }> {
     const children: ActivatedRoute[] = route.children;
 
     if (children.length === 0) {
@@ -30,7 +30,6 @@ export class BreadcrumbService {
     }
 
     for (const child of children) {
-
       const routeURL: string = child.snapshot.url.map(segment => segment.path).join('/');
       if (routeURL !== '') {
         url += `/${routeURL}`;
@@ -38,73 +37,32 @@ export class BreadcrumbService {
 
       let label = routeURL;
 
-      //console.log(label)
-      if(label==='archives')label = this.capitalizeFirstLetter(label);
+      if(label==='specs')label = 'Specifications';
 
-/*      if(label.includes('gens/') || label.includes('vers/')){
-        label = label.split("/")[1];
-      }*/
 
-      //console.log(child.snapshot.paramMap);
-      // Jeśli to generacja, dodaj nazwę generacji
-/*      if (child.snapshot.paramMap.has('generationName')) {
-        const generationName = child.snapshot.paramMap.get('generationName');
-        label = generationName ? generationName : 'Generation';
-      }
-
-      if (child.snapshot.paramMap.has('versionName')) {
-        const versionName = child.snapshot.paramMap.get('versionName');
-        label = versionName ? versionName : 'Version';
-      }*/
-
-     // console.log(label.includes('gens/') || label.includes('vers/'));
-      if (/*label !== 'gens' && label !== 'vers' && */label !== '' && label!== 'undefined' && !breadcrumbs.some(b => b.label === label)) {
-
-        if(label=="gens" || label=="vers") {
+      if (label !== '' && label!== 'undefined' && !breadcrumbs.some(b => b.label === label)) {
+        if(label==='gens' || label==='vers') {
           let last = breadcrumbs.pop();
           if (last) {
             last.url  += "/" + label
             breadcrumbs.push(last);
           }
-          //console.log(label, url)
-
-        }else if(label.includes('gens/') || label.includes('vers/')) {
-          let labele = label.split("/")[1];
-          let url = label.split("/")[0];
-          let last = breadcrumbs.pop();
-          if (last) {
-            last.url  += "/" + url
-            breadcrumbs.push(last);
-            url = last.url
-            breadcrumbs.push({label:labele, url});
-          }
+        }else if(label.includes('-')){
+          const parm = label.split('-');
+          Number(parm.pop());
+          label = parm.join('-');
+          breadcrumbs.push({label, url});
         }else{
           breadcrumbs.push({label, url});
+
         }
 
-
       }
 
 
-
-/*      let label = child.snapshot.data['breadcrumb'] || routeURL;
-      if (routeURL === 'gen') {
-        label = 'Generation';  // Może być inna nazwa
-      } else if (routeURL === 'version') {
-        label = 'Version';  // Może być inna nazwa
-      }
-      if(label!=='gens'){
-        breadcrumbs.push({ label, url });
-      }*/
-
-      // Zapisz breadcrumb
-
-
-      //console.log('Breadcrumb:', breadcrumbs);
       this.createBreadcrumbs(child, url, breadcrumbs);
     }
 
-    //console.log("Finito", breadcrumbs)
     return breadcrumbs;
   }
   private capitalizeFirstLetter(text: string): string {
@@ -127,6 +85,10 @@ export class BreadcrumbService {
     }
 
     return label;
+  }
+
+  public getBreadcrumbs(): Array<{ label: string, url: string }> {
+    return this.breadcrumbsSubject.getValue();
   }
 }
 

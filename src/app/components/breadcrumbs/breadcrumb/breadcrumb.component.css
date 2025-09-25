@@ -26,17 +26,35 @@
   background-color: #b32424;
 }
 
+.form-switch{
+  user-select: none;
+}
 
 
 .breadcrumb, .breadcrumb-div{
 
   width: 90%;
-  background-color: #C3C3C3;
-}
+  /*background-color: #C3C3C3;*/
 
+}
+.breadcrumb-div{
+  box-shadow: #dcdcdc 0 1px 3px;
+  /*background-color: #eaeaea;*/
+  background-color: rgba(252, 252, 252, 0.5);
+  /*
+  background-color: #fcfcfc;
+  */
+}
 
 @media (max-width: 576px) {
   .container{
     width: 100%;
+  }
+}
+
+.breadcrumb-item {
+  user-select: none;
+  a {
+    text-decoration: none;
   }
 }

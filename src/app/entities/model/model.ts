@@ -1,6 +1,7 @@
 import {Brand} from '../brand/brand';
 import {Generation} from '../generation/generation';
 import {Version} from '../version/version';
+import {Engine} from "../engine/engine";
 
 export interface Model {
   id: number;
@@ -11,4 +12,5 @@ export interface Model {
 
   versions: Version[];
   generations: Generation[];
+  engines: Engine[];
 }

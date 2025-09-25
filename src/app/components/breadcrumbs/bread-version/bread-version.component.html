@@ -1,12 +1,5 @@
 <div class="d-flex flex-wrap justify-content-evenly">
   <div class="model-item  my-2 mx-1" *ngFor="let version of versions">
-    <!--
-        <a (click)="selectBrand(brand)">{{ brand.name }}</a>
-    -->
-      <!--
-            <app-model [model]="model" class="model-container my-1" [routerLink]="[model.nameId]"></app-model>
-      -->
       <app-item [name]="version.name" [date]="'(' + version.startYear + ' - ' + version.endYear + ')'"   (click)="getNavigationPath(version)"></app-item>
-
   </div>
 </div>

@@ -3,18 +3,18 @@
 
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { HttpClient } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { filter } from 'rxjs';
 import { environment } from '../environments/environment.development';
 import { AuthService } from './services/auth/auth.service';
+import {ToastComponent} from "./components/toast/toast.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  imports: [NavbarComponent, RouterOutlet],
+  imports: [NavbarComponent, RouterOutlet, ToastComponent],
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
@@ -35,7 +35,6 @@ export class AppComponent implements OnInit {
 
     // Load discovery document and try to log in
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
-      console.log('Discovery document loaded and login attempted');
     });
 
     // Set up automatic silent refresh
@@ -59,13 +58,13 @@ export class AppComponent implements OnInit {
       })
       .catch((err) => {
         console.error('Error refreshing token:', err);
-        this.oauthService.logOut(); // Log out the user if the refresh token is invalid
-        window.location.reload(); // Reload the page to redirect to the login page
+        this.oauthService.logOut();
+        window.location.reload();
       });
   }
 
   logOut(): void {
-    this.oauthService.logOut(); // Log out and remove the token
-    window.location.reload(); // Reload the page after logout
+    this.oauthService.logOut();
+    window.location.reload();
   }
 }

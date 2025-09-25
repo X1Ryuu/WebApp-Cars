@@ -1,1 +1,7 @@
+.form-label, h2, .form-select, .mb-3{
+    user-select: none;
+}
 
+.option-null{
+    font-style: italic;
+}

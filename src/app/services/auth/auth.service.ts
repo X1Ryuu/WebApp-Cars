@@ -28,13 +28,13 @@ export class AuthService implements OnDestroy {
 
     // Initial role check
     this.checkRoles();
-    console.log("isAdmin: ", this.isAdmin)
-    console.log("roles: ",this.roles)
+/*    console.log("isAdmin: ", this.isAdmin)
+    console.log("roles: ",this.roles)*/
   }
 
   ngOnDestroy(): void {
     if (this.oauthSubscription) {
-      this.oauthSubscription.unsubscribe(); // Clean up the subscription
+      this.oauthSubscription.unsubscribe();
     }
   }
 
@@ -77,20 +77,15 @@ export class AuthService implements OnDestroy {
       .subscribe(() => {
         this.checkRoles(); // Refresh roles after login
       });
-/*    window.location.reload(); // Reload the page after login
-    this.checkRoles();*/
-  //  console.log('Logged in and roles checked');
+
   }
 
   logout(): void {
-    this.oauthService.logOut(); // Log out the user
+    this.oauthService.logOut();
   }
 
   isLoggedIn(): boolean {
-    return this.oauthService.hasValidAccessToken(); // Check if the user is logged in
+    return this.oauthService.hasValidAccessToken();
   }
 
-/*  clearToken(){
-    this.oauthService.revokeTokenAndLogout();
-  }*/
 }

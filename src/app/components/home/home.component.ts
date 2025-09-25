@@ -28,6 +28,7 @@ export class HomeComponent {
         .subscribe((result) => {
           if (this.oauthService.hasValidAccessToken()) {
             this.helloText = result.message;
+
           } else {
             console.log('Token is not valid');
           }
@@ -36,7 +37,8 @@ export class HomeComponent {
         'Access Token:',
         this.oauthService.getAccessToken(),
         '\n\nIsValid?:',
-        this.oauthService.hasValidAccessToken()
+        this.oauthService.hasValidAccessToken(),
+        this.authService.roles
     );
   }
 }

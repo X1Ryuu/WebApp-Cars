@@ -1,13 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
 html *{font-weight: 450;
-font-size: 100%;
+
 }
 body{
   /*
   background-color: #0E0E20;
   */
-  background-color: #eaeaea;
+  font-family: 'Sansation', cursive;
+  /*background-color: #eaeaea;*/
+  background-color: #f7fcfe;
 
 }
 #main-class {

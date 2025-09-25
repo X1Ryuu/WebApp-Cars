@@ -1,18 +1,16 @@
-/*
 import { TestBed } from '@angular/core/testing';
 
-import { BreadcrumbsService } from './breadcrumbs.service';
+import { ToastService } from './toast-service.service';
 
-describe('BreadcrumbsService', () => {
-  let service: BreadcrumbsService;
+describe('ToastServiceService', () => {
+  let service: ToastService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BreadcrumbsService);
+    service = TestBed.inject(ToastService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });
-*/

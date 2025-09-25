@@ -1,15 +1,46 @@
-/*
-.main-model-container{
-  background-color: #34495e;
+.container{
+  /*
+  background-color: red;
+  */
 }
-*/
 
 .img-container  {
+  user-select: none;
   aspect-ratio: 3/2;
-
+  margin: auto;
   background-color: white;
 }
 
-.main-model-container{
+.img-container-brand{
+  user-select: none;
+  aspect-ratio: 1/1;
+  width: 100px;
+  background-color: white;
+}
+
+.main-container{
   width: 200px;
+}
+
+.name-container span{
+  font-size: 16px;
+}
+
+.favorite-icon {
+/*  position: relative;*/
+  font-size: 20px;
+  cursor: pointer;
+  color: gray;
+
+  user-select: none;
+  /*
+  transition: color 0.3s ease-in-out;
+  */
+
+}
+
+.favorite-icon.active {
+  font-variation-settings:
+          'FILL' 1;
+  color: gold; /* zaznaczona gwiazdka */
 }

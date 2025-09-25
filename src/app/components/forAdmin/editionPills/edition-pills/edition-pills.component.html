@@ -15,15 +15,13 @@
   </div>
 
   <div class="tab-content mb-4" id="pills-tabContent">
-    <div *ngIf="activeTab === 'brands'">
-      <app-brand-edition></app-brand-edition>
-    </div>
-    <div *ngIf="activeTab === 'models'">
-      <app-model-edition></app-model-edition>
-    </div>
-    <div *ngIf="activeTab === 'generations'">
+      @if(activeTab === 'brands'){
+          <app-brand-edition></app-brand-edition>
+      } @else if (activeTab === 'models'){
+          <app-model-edition></app-model-edition>
+      }@else if(activeTab === 'generations'){
+      }
 
-    </div>
   </div>
 </div>
 

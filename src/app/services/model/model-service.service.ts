@@ -5,7 +5,6 @@ import {Observable} from 'rxjs';
 
 import {Model} from '../../entities/model/model';
 import {OAuthService} from 'angular-oauth2-oidc';
-import {Brand} from "../../entities/brand/brand";
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +17,9 @@ export class ModelService {
   public findAll(): Observable<Model[]>{
     return this.http.get<Model[]>(`${this.modelsUrl}/all`);
   }
-
-  public getModelByName(modelName: string | null): Observable<Model>{
-    console.log(modelName);
-    return this.http.get<Model>(`${this.modelsUrl}/${modelName}`);
-  }
-
+  
   public getModelsByBrand(nameId: number): Observable<Model[]>{
-    console.log(nameId);
+   // console.log(nameId);
     return this.http.get<Model[]>(`${this.modelsUrl}/${nameId}`);
   }
 
@@ -37,13 +31,12 @@ export class ModelService {
 
   public addModel(model: any){
     console.log("Model: "+model);
-    const token = this.oauthService.getAccessToken(); // Get the JWT token
+    const token = this.oauthService.getAccessToken();
     return this.http.post(`${this.modelsUrl}/add`, model, {
       headers: {
-        'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+        'Authorization': `Bearer ${token}`
       }
     });
-    /*    return this.http.post<Brand>(`${this.brandsUrl}/add`, brand);*/
   }
 
 }

@@ -1,24 +1,24 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {BrandService} from '../../../../services/brand/brand-service.service';
 import {ModelService} from '../../../../services/model/model-service.service';
 import {VersionService} from '../../../../services/version/version-service.service';
-import {GenerationService} from '../../../../services/generation/generation-service.service';
-import {Brand} from '../../../../entities/brand/brand';
-import {AddModalComponent} from "../../modals/add-modal/add-modal.component";
+
+import {Generation} from "../../../../entities/generation/generation";
+import {Model} from "../../../../entities/model/model";
+import {NgClass} from "@angular/common";
 
 
 @Component({
   selector: 'app-car-add-pills',
   standalone: true,
-    imports: [
-        NgIf,
-        ReactiveFormsModule,
-        NgForOf,
-        NgClass,
-    ],
+  imports: [
+
+    ReactiveFormsModule,
+    NgClass,
+
+  ],
   templateUrl: './car-add-pills.component.html',
   styleUrl: './car-add-pills.component.css'
 })
@@ -26,8 +26,8 @@ export class CarAddPillsComponent implements OnInit {
   activeTab: string = 'brands'; // Aktywna zakładka
   successMessage: string | null = null;
   errorMessage: string | null = null;
-
-
+  activeForm: FormGroup | undefined;
+  map: Map<string, FormGroup> = new Map<string, FormGroup>
   brands: any[] = [];
   models: any[] = [];
   generations: any[] = [];
@@ -48,11 +48,10 @@ export class CarAddPillsComponent implements OnInit {
               private brandService: BrandService,
               private modelService: ModelService,
               private versionService: VersionService,
-              private generationService: GenerationService,
-              private engineService: GenerationService
               ) {}
 
   ngOnInit(): void {
+    this.generations = [{id:0, name: ''}];
  //   this.brand.id = 0;
     this.years.push("now");
     for(let i = new Date().getFullYear(); i >= 1900; i--){
@@ -64,7 +63,7 @@ export class CarAddPillsComponent implements OnInit {
     });
 
     this.modelForm = this.fb.group({
-      brandName: ['', Validators.required],
+      brandId: ['', Validators.required],
       name: ['', Validators.required],
 /*      startYear: ['', Validators.required],
       endYear: ['', Validators.required]*/
@@ -99,11 +98,19 @@ export class CarAddPillsComponent implements OnInit {
       endYear: ['', Validators.required]});
 
     this.loadBrands();
+
+    this.map.set('brands', this.brandForm);
+    this.map.set('models', this.modelForm);
+    this.map.set('generations', this.generationForm);
+    this.map.set('versions', this.versionForm);
+    this.map.set('engines', this.engineForm);
+    this.setActiveTab('brands');
   }
 
   setActiveTab(tab: string) {
     if(tab!=this.activeTab) this.resetForms();
     this.activeTab = tab;
+    this.activeForm = this.map.get(tab);
   }
 
 
@@ -113,48 +120,47 @@ export class CarAddPillsComponent implements OnInit {
     this.generationForm.reset();
     this.versionForm.reset();
     this.engineForm.reset();
+
   }
 
 
   loadBrands() {
     this.brandService.findAll().subscribe((brands) => {
-      this.brands = this.brands.concat(brands);
+      this.brands = brands;
     });
+
   }
 
   onBrandChange() {
-    let brandId = this.generationForm.get('brandId')?.value;
-    if(brandId.empty) {
-      brandId = this.versionForm.get('brandId')?.value;
-    }
-    console.log(brandId)
-    if (brandId) {
-      this.http.get<any[]>(`http://localhost:8080/models/${brandId}`).subscribe({
+    this.models = [];
+    this.generations = [];
+    let brandId= 0;
+    if (this.activeForm) {
+      brandId = this.activeForm.get('brandId')?.value;
+      this.http.get<Model[]>(`http://localhost:8080/api/models/${brandId}`).subscribe({
         next: data => this.models = data,
         error: err => this.errorMessage = 'Error loading models'
-    });
+      });
     }
+
+
   }
 
   onModelChange(){
+    this.generations = [];
+    if (this.activeForm) {
+      let modelId= 0;
+
+      modelId = this.activeForm.get('modelId')?.value;
+      if(this.activeTab == 'versions') {
+        this.http.get<Generation[]>(`http://localhost:8080/api/generations/${modelId}`).subscribe({
+          next: data => this.generations = [{id: null, name: 'Generation not selected'}, ...data],
+          error: err => this.errorMessage = 'Error loading generations'
+        });
+      }
+    }
 
   }
-
-  onGenerationChange(){}
-
-
-  onVersionChange(){}
-
-/*  submitBrand() {
-    this.http.post('http://localhost:8080/brands/add', this.brandForm.value).subscribe({
-      next: () =>{
-        this.successMessage = 'Brand added successfully!';
-        console.log(this.brandForm.value);
-      },
-
-      error: () => this.errorMessage = 'Error adding brand'
-  });
-  }*/
 
   submitBrand(){
   //  console.log(this.brandForm.value)
@@ -172,13 +178,12 @@ export class CarAddPillsComponent implements OnInit {
       });
     }
   }
-  public oj: boolean = 2025<new Date().getFullYear();
 
   submitModel() {
 
     const modelData = {
       name: this.modelForm.value.name,
-      brandName: this.modelForm.value.brandName // Przekazujemy brand jako obiekt
+      brandName: this.modelForm.value.brandName
     };
 
       if (this.modelForm.valid) {
