@@ -1,0 +1,5 @@
+<div class="d-flex flex-wrap justify-content-evenly">
+  <div class="model-item  my-2 mx-1" *ngFor="let version of versions">
+      <app-item [name]="version.name" [date]="'(' + version.startYear + ' - ' + version.endYear + ')'"   (click)="getNavigationPath(version)"></app-item>
+  </div>
+</div>

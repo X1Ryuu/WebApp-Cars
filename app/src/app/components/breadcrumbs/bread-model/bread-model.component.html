@@ -1,0 +1,6 @@
+
+<div class="d-flex flex-wrap justify-content-evenly">
+  <div class="item  my-2 mx-1" *ngFor="let model of models">
+        <app-item [name]="model.name" class="model-container"  (click)="getNavigationPath(model)"></app-item>
+  </div>
+</div>

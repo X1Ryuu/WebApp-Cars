@@ -1,0 +1,31 @@
+.form-check-input{
+  justify-self: center;
+}
+
+.form-check{
+  justify-self: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.only-td{
+
+  width: 5px;
+}
+
+.btn{
+  width: 80px;
+}
+
+.brand-add{
+  background-color: rgba(110, 86, 86, 0.21);
+  color: #000000;
+  font-weight: 600;
+}
+
+.brand-delete{
+  background-color: rgb(255, 39, 39);
+  color: #ffffff;
+  font-weight: 600;
+}
+

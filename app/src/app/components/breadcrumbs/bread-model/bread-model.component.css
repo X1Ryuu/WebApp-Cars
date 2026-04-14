@@ -1,0 +1,46 @@
+/*.container{
+  width: 200px;
+  !*
+  background-color: #a1a1a1;
+  *!
+}
+
+.model-item{
+  width: 100%;
+  !*
+  background-color: #ff9696;
+  *!
+}
+
+
+.model-item-container{
+  width: 100%;
+  !*
+  background-color: bisque;
+  *!
+
+}*/
+
+/*@media (max-width: 600px) {
+
+  .model-item{
+    width: 100%;
+  }
+}*/
+
+
+/*.container{
+  width: 100px;
+  background-color: #a1a1a1;
+
+
+}*/
+
+
+
+/*.model-item-container{
+
+  background-color: bisque;
+  justify-content: center;
+}*/
+

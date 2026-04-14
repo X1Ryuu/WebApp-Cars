@@ -1,0 +1,67 @@
+
+<div class="container bread-container my-5 d-flex flex-wrap justify-content-center">
+  <div class="breadcrumb-div rounded-3 justify-content-center">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb pt-3 ps-3 mx-auto my-3">
+          @for(breadcrumb of breadcrumbs; let last = $last; track breadcrumb){
+              <li class="breadcrumb-item">
+                  @if(!last){
+                      <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+                  }@else{
+                      <span>{{ breadcrumb.label }}</span>
+                  }
+              </li>
+          }
+
+      </ol>
+
+
+    </nav>
+
+      <div class="container">
+          @if(authService.isAble ){
+              <div class="d-flex">
+                  <!--<div class="d-flex ">
+                      <button *ngIf="authService.isAble" type="button" class="btn btn-success px-auto ms-auto my-2 arch" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          Add to archives
+                      </button>
+                  </div>-->
+                  @if(ticked){
+                      <button
+                              type="button"
+                              class="btn add mx-1"
+                              data-bs-toggle="modal"
+                              data-bs-target="#exampleModal">
+                          Add
+                      </button>
+                      <button
+                              type="button"
+                              class="btn del mx-1">
+                          Delete
+                      </button>
+                  }
+
+
+<!--                  <div class="form-check form-switch ms-auto my-2">
+                      <input class="form-check-input" type="checkbox" role="switch" (change)="onSwitchChange($event)" id="flexSwitchCheckDefault">
+                      <label class="form-check-label" for="flexSwitchCheckDefault">Admin mode</label>
+                  </div>-->
+
+              </div>
+          }
+
+
+        <router-outlet></router-outlet>
+      </div>
+      @if(authService.isAble){
+          <app-add-modal></app-add-modal>
+      }
+  </div>
+</div>
+
+
+
+
+
+
+

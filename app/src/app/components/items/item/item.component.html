@@ -1,0 +1,32 @@
+
+<div class="container p-1">
+
+    @if(type != 'brand'){
+        <div class="main-container">
+            <div class="img-container mx-auto my-auto"></div>
+            <div class="name-container d-flex flex-wrap mt-1 p-1">
+
+                <span class="text me-1">{{name}}</span>
+                @if(type!='model'){
+                    <span class="text"> {{ date }}  </span>
+                }
+            </div>
+        </div>
+    }@else{
+        <div>
+            <div class="img-container-brand mx-auto my-auto" >
+                <!--<h2>{{thing}}</h2>-->
+            </div>
+            <div class="brand-name-container my-auto py-2 px-1">
+                <span class="text">{{name}}                        <span
+                        class="material-symbols-outlined favorite-icon"
+                        [class.active]="isFavorite"
+                        (click)="toggleFavorite()">
+                    star
+            </span></span>
+            </div>
+        </div>
+    }
+</div>
+
+

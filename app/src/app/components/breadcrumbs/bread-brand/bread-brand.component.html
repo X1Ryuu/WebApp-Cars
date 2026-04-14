@@ -1,0 +1,11 @@
+
+
+<div class="d-flex flex-wrap  justify-content-center">
+    @for(brand of brands; track brand){
+        <div class="brand-item my-2 mx-2">
+            <div class="brand-item-container">
+                <app-item [name]="brand.name" [type]="'brand'" (click)="getNavigationPath(brand)"></app-item>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,7 @@
+<div class="d-flex flex-wrap justify-content-evenly">
+    @for(generation of generations; track generation){
+        <div class="model-item  my-2 mx-1">
+            <app-item [name]="generation.name" [date]="'(' + generation.startYear + ' - ' + generation.endYear + ')'" (click)="getNavigationPath(generation)"></app-item>
+        </div>
+    }
+</div>

@@ -1,0 +1,60 @@
+#body{
+
+}
+
+
+
+.navbar{
+/*  background-color: #1A1A1D ;*/
+  /*background-color: #a1a1a1;*/
+  font-size: 20px;
+  user-select: none;
+  box-shadow: #dcdcdc 0 1px 3px;
+  /*background-color: #eaeaea;*/
+  background-color: rgba(234, 234, 234, 0.5);
+}
+.navbar-body{
+width: 80%;
+
+}
+
+.logo-name{
+  padding: 0;
+
+}
+
+.logo-name a{
+  color: #444444;
+  font-weight: 800;
+  text-decoration: none;
+  font-style: italic;
+
+}
+
+
+
+
+.dropdown-menu{
+  width: 100px;
+}
+
+.nav-item a:hover{
+  cursor: pointer;
+  color: rgba(255, 0, 0, 0.71);
+  /*
+  color: #c13584;
+  */
+}
+@media (max-width: 1260px) {
+/*  .navbar{
+    width: 80%;
+  }*/
+}
+
+
+
+@media (max-width: 600px) {
+/*  .navbar{
+    width: 100%;
+  }*/
+}

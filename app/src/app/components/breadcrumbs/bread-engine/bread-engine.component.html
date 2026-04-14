@@ -1,0 +1,113 @@
+<div class="d-flex flex-wrap main-cont pb-3">
+    @if(pbEngines.length>0){
+        <div class="engine-table mb-4">
+            <div class="d-flex flex-wrap align-items-center pb-div border-bottom pb-2 mb-3 ">
+                <div class="symbol rounded-3 justify-content-center align-items-center me-2">Pb</div>
+                <span>Gasoline</span>
+
+            </div>
+            @for(engine of pbEngines; track engine.id){
+                <div class="my-1 d-flex flex-wrap item border-bottom">
+                    <span class="volume-span pe-3">{{engine.volume}}</span>
+                    <span class="name-span pe-3">{{engine.name}}</span>
+                    @if(engine.injection!=null){
+                        <span class="injection-span pe-3">{{engine.injection}}</span>
+                    }
+                    <span class="fromDate-span pe-3">{{engine.fromDate}}</span>
+
+                </div>
+            }
+        </div>
+    }
+    @if(dieselEngines.length>0){
+        <div class="engine-table mb-4">
+            <div class="d-flex flex-wrap align-items-center diesel-div border-bottom pb-2 mb-3">
+                <div class="symbol rounded-3 justify-content-center align-items-center me-2 px-2" >Diesel</div>
+                <span>Diesel</span>
+
+            </div>
+            @for(engine of dieselEngines; track engine.id){
+                <div class="my-1 d-flex flex-wrap item border-bottom">
+                    <span class="volume-span pe-3">{{engine.volume}}</span>
+                    <span class="name-span pe-3">{{engine.name}}</span>
+                    @if(engine.injection!=null){
+                        <span class="injection-span pe-3">{{engine.injection}}</span>
+                    }
+                    <span class="fromDate-span pe-3">{{engine.fromDate}}</span>
+                    <!--
+                                <div class="fromDate-span">{{engine.fromDate}}</div>
+                    -->
+                </div>
+            }
+        </div>
+    }
+    @if(pluginPbEngines.length>0){
+        <div class="engine-table mb-4">
+            <div class="d-flex flex-wrap align-items-center plugin-pb-div border-bottom pb-2 mb-3">
+                <div class="symbol rounded-3 justify-content-center align-items-center me-2 px-2" >Plug-in</div>
+                <span>Hybrid</span>
+
+            </div>
+            @for(engine of pluginPbEngines; track engine.id){
+                <div class="my-1 d-flex flex-wrap item border-bottom">
+                    <span class="volume-span pe-3">{{engine.volume}}</span>
+                    <span class="name-span pe-3">{{engine.name}}</span>
+                    @if(engine.injection!=null){
+                        <span class="injection-span pe-3">{{engine.injection}}</span>
+                    }
+                    <span class="fromDate-span pe-3">{{engine.fromDate}}</span>
+                    <!--
+                                <div class="fromDate-span">{{engine.fromDate}}</div>
+                    -->
+                </div>
+            }
+        </div>
+    }
+    @if(pluginDieselEngines.length>0){
+        <div class="engine-table mb-4">
+            <div class="d-flex flex-wrap align-items-center plugin-diesel-div border-bottom pb-2 mb-3">
+                <div class="symbol rounded-3 justify-content-center align-items-center me-2 px-2" >Plug-in</div>
+                <span>Diesel</span>
+
+            </div>
+            @for(engine of pluginDieselEngines; track engine.id){
+                <div class="my-1 d-flex flex-wrap item border-bottom">
+                    <span class="volume-span pe-3">{{engine.volume}}</span>
+                    <span class="name-span pe-3">{{engine.name}}</span>
+                    @if(engine.injection!=null){
+                        <span class="injection-span pe-3">{{engine.injection}}</span>
+                    }
+                    <span class="fromDate-span pe-3">{{engine.fromDate}}</span>
+                    <!--
+                                <div class="fromDate-span">{{engine.fromDate}}</div>
+                    -->
+                </div>
+            }
+        </div>
+    }
+    @if(electricEngines.length>0){
+        <div class="engine-table mb-4">
+            <div class="d-flex flex-wrap align-items-center electric-div border-bottom pb-2 mb-3">
+                <div class="symbol rounded-3 justify-content-center align-items-center me-2 px-2" >Electric</div>
+                <span>Electric</span>
+
+            </div>
+            @for(engine of electricEngines; track engine.id){
+                <div class="my-1 d-flex flex-wrap item border-bottom">
+                    <span class="volume-span pe-3">{{engine.volume}}</span>
+                    <span class="name-span pe-3">{{engine.name}}</span>
+                    @if(engine.injection!=null){
+                        <span class="injection-span pe-3">{{engine.injection}}</span>
+                    }
+                    <span class="fromDate-span pe-3">{{engine.fromDate}}</span>
+                    <!--
+                                <div class="fromDate-span">{{engine.fromDate}}</div>
+                    -->
+                </div>
+            }
+        </div>
+    }
+
+</div>
+
+

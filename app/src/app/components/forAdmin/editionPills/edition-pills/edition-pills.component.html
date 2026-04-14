@@ -1,0 +1,28 @@
+<div class="screen"></div>
+<div class="container main-con">
+  <div class="container mt-3 mb-3"  id="m-cont">
+    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-brands-tab" data-bs-toggle="pill" data-bs-target="#pills-brands" type="button" role="tab" aria-controls="pills-brands" (click)="activeTab = 'brands'" [ngClass]="{'active': activeTab === 'login'}" >BRANDS</button>
+      </li>
+      <li class="nav-item " role="presentation">
+        <button class="nav-link" id="pills-models-tab" data-bs-toggle="pill" data-bs-target="#pills-models" type="button" role="tab" aria-controls="pills-models" (click)="activeTab = 'models'" [ngClass]="{'active': activeTab === 'models'}">MODELS</button>
+      </li>
+      <li class="nav-item " role="presentation">
+        <button class="nav-link" id="pills-generations-tab" data-bs-toggle="pill" data-bs-target="#pills-generations" type="button" role="tab" aria-controls="pills-generations" (click)="activeTab = 'generations'" [ngClass]="{'active': activeTab === 'generations'}">GENERATIONS</button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="tab-content mb-4" id="pills-tabContent">
+      @if(activeTab === 'brands'){
+          <app-brand-edition></app-brand-edition>
+      } @else if (activeTab === 'models'){
+          <app-model-edition></app-model-edition>
+      }@else if(activeTab === 'generations'){
+      }
+
+  </div>
+</div>
+
+

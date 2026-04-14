@@ -1,0 +1,219 @@
+
+
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">Add vehicle</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="container mt-5">
+        <h1 class="mb-4 text-center">Car Details Management</h1>
+            @if(successMessage){
+                <div class="alert alert-success" role="alert">
+                    {{ successMessage }}
+                </div>
+            } @else if (errorMessage){
+                <div class="alert alert-danger" role="alert">
+                    {{ errorMessage }}
+                </div>
+            }
+
+        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" type="button" role="tab" aria-controls="pills-brand" aria-selected="true" (click)="setActiveTab('brands')" [ngClass]="{'active': activeTab === 'brands'}">Add Brand</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" type="button" role="tab" aria-controls="pills-model" aria-selected="false" (click)="setActiveTab('models')" [ngClass]="{'active': activeTab === 'models'}">Add Model</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link"  type="button" role="tab" aria-controls="pills-generation" aria-selected="false" (click)="setActiveTab('generations')" [ngClass]="{'active': activeTab === 'generations'}">Add Generation</button>
+          </li>
+
+          <li class="nav-item"  role="presentation">
+            <button class="nav-link" type="button" role="tab" aria-controls="pills-version" aria-selected="false" (click)="setActiveTab('versions')" [ngClass]="{'active': activeTab === 'versions'}">Add Version</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" type="button" role="tab" aria-controls="pills-engine" aria-selected="false" (click)="setActiveTab('engines')" [ngClass]="{'active': activeTab === 'engines'}">Add Engine</button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="pills-tabContent">
+
+            @if(activeTab === 'brands'){
+                <div>
+                    <h2 class="mb-4">Add Brand</h2>
+                    <form [formGroup]="brandForm" (ngSubmit)="submitBrand()">
+                        <div class="mb-3">
+                            <label class="form-label" for="bName" >Brand Name</label>
+                            <input type="text" class="form-control" formControlName="name" placeholder="Enter brand name" required id="bName">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Brand Logo URL</label>
+                            <input type="text" class="form-control" formControlName="logo" placeholder="Enter logo URL" id="bLogo">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Add Brand</button>
+                        </div>
+                    </form>
+                </div>
+            }@else if(activeTab === 'models'){
+                <div>
+                    <h2 class="mb-4">Add Model</h2>
+                    <form [formGroup]="modelForm" (ngSubmit)="submitModel()">
+                        <div class="mb-3 ms-auto me-auto">
+                            <label class="form-label">Select Brand</label>
+                            <select class="form-select" formControlName="brandId" (change)="onBrandChange()" id="mBrandSel">
+                                @for(brand of brands; track brand.id){
+                                        <option [value]="brand.id">{{ brand.name }}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Model Name</label>
+                            <input type="text" class="form-control" formControlName="name" placeholder="Enter model name" id="mName">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Add Brand</button>
+                        </div>
+                    </form>
+                </div>
+            }@else if(activeTab === 'generations'){
+                <div>
+                    <h2 class="mb-4">Add Generation</h2>
+                    <form [formGroup]="generationForm" (ngSubmit)="submitGeneration()">
+
+                        <div class="form-group">
+                            <div class="div-car mb-3">
+                                <label class="form-label">Select Brand</label>
+                                <select class="form-select" formControlName="brandId" (change)="onBrandChange()" id="gBrandSel">
+                                    @for(brand of brands; track brand.id){
+                                        <option  [value]="brand.id">{{ brand.name }}</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="div-car mb-3">
+                                <label class="form-label">Select Model</label>
+                                <select class="form-select" formControlName="modelId" (change)="onModelChange()" id="gModelSel">
+                                    @for(model of models; track model.id){
+                                        <option  [value]="model.id">{{ model.name }}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3" >
+                            <label class="form-label">Generation Name</label>
+                            <input type="text" class="form-control" formControlName="name" placeholder="Enter version name" id="gName">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <div style="flex: 1;">
+                                <label for="select11"  class="form-label">Production start year</label>
+                                <select formControlName="startYear" class="form-select date-picker" id="select11">
+                                    @for(year of years; track year){
+                                        <option [value]="year">{{ year }}</option>
+                                    }
+                                </select>
+                            </div>
+                            <div style="flex: 1;">
+                                <label for="select12"  class="form-label">Production end year</label>
+                                <select formControlName="endYear" class="form-select date-picker" id="select12">
+                                    @for(year of years; track year){
+                                        <option [value]="year">{{ year }}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Add Brand</button>
+                        </div>
+                    </form>
+                </div>
+            }@else if(activeTab === 'versions'){
+                <div>
+                    <h2 class="mb-4">Add Version</h2>
+                    <form [formGroup]="versionForm" (ngSubmit)="submitVersion()">
+                        <div class="mb-3">
+                            <label class="form-label">Select Brand</label>
+                            <select class="form-select" formControlName="brandId" (change)="onBrandChange()" id="vBrandSel">
+                                @for(brand of brands; track brand.id){
+                                    <option  [value]="brand.id">{{ brand.name }}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Select Model</label>
+                            <select class="form-select" formControlName="modelId" (change)="onModelChange()" id="vModelSel">
+                                @for(model of models; track model.id){
+                                    <option  [value]="model.id">{{ model.name }}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Select Generation</label>
+                            <select class="form-select" formControlName="generationId"  id="vGenSel">
+
+                                @for(generation of generations; track generation.id){
+
+                                    @if(generation.id==null){
+                                        <option class="option-null" [value]="generation.id">{{ generation.name }}</option>
+                                    }@else{
+                                        <option [value]="generation.id">{{ generation.name }}</option>
+
+                                    }
+                                }
+
+                            </select>
+                        </div>
+                        <div class="mb-3" >
+                            <label class="form-label">Version Name</label>
+                            <input type="text" class="form-control" formControlName="name" placeholder="Enter version name" id="vName">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <div style="flex: 1;">
+                                <label for="select21"  class="form-label">Production start year</label>
+                                <select formControlName="startYear" class="form-select date-picker" id="select21">
+                                    @for(year of years; track year){
+                                        <option [value]="year">{{ year }}</option>
+                                    }
+                                </select>
+                            </div>
+                            <div style="flex: 1;">
+                                <label for="select22" class="form-label">Production end year</label>
+                                <select formControlName="endYear" class="form-select date-picker" id="select22">
+                                    @for(year of years; track year){
+                                        <option [value]="year">{{ year }}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Add Brand</button>
+                        </div>
+                    </form>
+                </div>
+            }@else if(activeTab === 'engines'){
+                <div></div>
+            }
+
+
+
+
+
+            <!--Generation Form-->
+
+
+            <!--Version Form-->
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
