@@ -1,4 +1,3 @@
-/src/main/resources/application-h2.properties
 /realms/user-profile--attributes.json
 /src/main/resources/application-postgres.properties
 /src/main/resources/application-supabase.properties

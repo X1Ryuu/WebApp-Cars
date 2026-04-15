@@ -7,8 +7,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.io.ClassPathResource;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.*;
 
 @Configuration
@@ -20,10 +22,11 @@ public class DataInitializr {
 
         return args -> {
             ObjectMapper objectMapper = new ObjectMapper();
-            File file = new File("api/src/main/resources/data.json");
 
-           // System.out.println(file.getAbsolutePath()+", "+file.exists());
-            BrandData[] brandDataList = objectMapper.readValue(file, BrandData[].class);
+            InputStream inputStream = new ClassPathResource("data.json").getInputStream();
+
+            BrandData[] brandDataList =
+                    objectMapper.readValue(inputStream, BrandData[].class);
             //System.out.println(Arrays.toString(brandDataList));
             for(BrandData brandD: brandDataList){
                // System.out.println(brandD.name);
