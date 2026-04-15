@@ -5,6 +5,7 @@ import {Router, RouterLink} from '@angular/router';
 import {AuthService} from "../../../services/auth/auth.service";
 import {ItemComponent} from "../../items/item/item.component";
 import {BreadcrumbService} from "../../../services/breadcrumbs/breadcrumb.service";
+import {ToastService} from "../../../services/toast/toast-service.service";
 
 @Component({
   selector: 'app-bread-brand',
@@ -26,7 +27,8 @@ export class BreadBrandComponent implements OnInit{
     private brandService: BrandService,
     public authService: AuthService,
     private router: Router,
-    private breadCrumbService: BreadcrumbService
+    private breadCrumbService: BreadcrumbService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +40,8 @@ export class BreadBrandComponent implements OnInit{
   getNavigationPath(brand: Brand): void {
     if(brand.models && brand.models.length > 0) {
       this.router.navigate([this.breadCrumbService.getBreadcrumbs()[this.breadCrumbService.getBreadcrumbs().length-1].url, brand.name+'-'+brand.id]);
+    }else{
+      this.toastService.showMessage("No more data found");
     }
   }
 }

@@ -11,6 +11,10 @@
   background-color: white;
 }
 
+.text{
+  color: white;
+}
+
 .img-container-brand{
   user-select: none;
   aspect-ratio: 1/1;

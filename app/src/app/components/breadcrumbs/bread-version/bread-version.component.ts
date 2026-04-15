@@ -6,6 +6,7 @@ import {NgForOf} from '@angular/common';
 
 import {Version} from "../../../entities/version/version";
 import {BreadcrumbService} from "../../../services/breadcrumbs/breadcrumb.service";
+import {ToastService} from "../../../services/toast/toast-service.service";
 
 @Component({
   selector: 'app-bread-version',
@@ -22,7 +23,11 @@ export class BreadVersionComponent implements OnInit{
 
   versions: Version[] = [];
 
-  constructor(private route: ActivatedRoute,private router: Router, private versionService: VersionService, private breadCrumbService: BreadcrumbService) {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private versionService: VersionService,
+              private breadCrumbService: BreadcrumbService,
+              private toastService: ToastService) {
   }
 
 
@@ -52,6 +57,8 @@ export class BreadVersionComponent implements OnInit{
   getNavigationPath(version: Version): void {
     if(version.engines && version.engines.length > 0) {
       this.router.navigate([this.breadCrumbService.getBreadcrumbs()[this.breadCrumbService.getBreadcrumbs().length-1].url, version.name+'-'+version.id]);
+    }else{
+      this.toastService.showMessage("No more data found");
     }
   }
 

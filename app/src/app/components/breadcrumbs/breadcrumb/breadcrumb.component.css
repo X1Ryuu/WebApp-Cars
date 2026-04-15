@@ -1,6 +1,9 @@
 .container{
   width: 80%;
   /*
+  background-color: #1B262C;
+  */
+  /*
   background-color: #0b66b6;
   */
 
@@ -32,7 +35,7 @@
 
 
 .breadcrumb, .breadcrumb-div{
-
+  --bs-breadcrumb-divider-color: white;
   width: 90%;
   /*background-color: #C3C3C3;*/
 
@@ -40,10 +43,16 @@
 .breadcrumb-div{
   box-shadow: #dcdcdc 0 1px 3px;
   /*background-color: #eaeaea;*/
-  background-color: rgba(252, 252, 252, 0.5);
+  background-color: #DBE2EF;
   /*
-  background-color: #fcfcfc;
+  background-color: rgba(252, 252, 252, 0.5);
   */
+  background-color: #384756;
+  background: #100e59;
+  background: linear-gradient(44deg, rgb(34, 33, 51) 0%, rgba(52, 73, 94, 1) 100%);
+  color: #BBE1FA;
+
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
 }
 
 @media (max-width: 576px) {
@@ -54,7 +63,20 @@
 
 .breadcrumb-item {
   user-select: none;
+  color: white;
   a {
+    /*
     text-decoration: none;
+    */
+    color: #001fcb;
   }
+}
+
+
+.breadcrumb-item a {
+  color: #BBE1FA;
+}
+
+.breadcrumb-item a:hover {
+  color: white;
 }

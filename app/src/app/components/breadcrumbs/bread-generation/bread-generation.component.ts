@@ -5,6 +5,7 @@ import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {GenerationService} from "../../../services/generation/generation-service.service";
 import {Generation} from "../../../entities/generation/generation";
 import {BreadcrumbService} from "../../../services/breadcrumbs/breadcrumb.service";
+import {ToastService} from "../../../services/toast/toast-service.service";
 
 @Component({
   selector: 'app-bread-generation',
@@ -19,7 +20,11 @@ import {BreadcrumbService} from "../../../services/breadcrumbs/breadcrumb.servic
 })
 export class BreadGenerationComponent implements OnInit{
   generations: any[] = [];
-  constructor(private route: ActivatedRoute, private generationService: GenerationService, private router: Router, private breadCrumbService: BreadcrumbService) {}
+  constructor(private route: ActivatedRoute,
+              private generationService: GenerationService,
+              private router: Router,
+              private breadCrumbService: BreadcrumbService,
+              private toastService: ToastService) {}
 
   ngOnInit(): void {
     // Pobierz parametr brandId z trasy
@@ -44,6 +49,8 @@ export class BreadGenerationComponent implements OnInit{
     let url = this.breadCrumbService.getBreadcrumbs()[this.breadCrumbService.getBreadcrumbs().length-1].url;
     if (generation.versions && generation.versions.length > 0) {
       this.router.navigate([url, generation.name+'-'+generation.id]);
+    }else{
+      this.toastService.showMessage("No more data found");
     }
   }
 

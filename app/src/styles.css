@@ -1,15 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 html *{font-weight: 450;
-
+  scroll-behavior: smooth;
 }
 body{
   /*
   background-color: #0E0E20;
   */
+  background-color: #F9F7F7;
   font-family: 'Sansation', cursive;
   /*background-color: #eaeaea;*/
-  background-color: #f7fcfe;
+  /*background-color: #f7fcfe;*/
+  /*
+  background-color: #eaeaea;
+  */
 
 }
 #main-class {
@@ -26,35 +30,7 @@ body{
   width: 100%;
   background-color: #a1a1a1;
 }
-/*.navbar{
-    position: absolute;
-    z-index: 1;
-}*/
 
-/*
-.navbar-collapse {
-    position: fixed;
-    width: 100%;
-    top: 56px; !* height of navbar *!
-    left: 0;
-    z-index: 1;
-    background-color: #f8f9fa; !* same as bg-body-tertiary *!
-}
-
-main {
-    position: relative;
-    z-index: 0;
-}
-*/
-
-
-/*.form-select{
-  width: 100%;
-}
-
-.date-picker{
-  width: 100%;
-}*/
 
 .form-group{
   display: flex;
@@ -73,8 +49,8 @@ main {
 
 
 .nav-pills .nav-link{
-  background-color: #eaeaea;
-  color: black;
+/*  background-color: #eaeaea;
+  color: black;*/
   justify-content: center;
   text-align: center;
   width: 100%;
@@ -136,4 +112,16 @@ main {
     color: #eaeaea;*/
   background-color: #34495e;
   color: #f1f1f1;
+}
+
+:root {
+  min-height: 100%;
+
+  --color-dark: #1B262C;
+  --color-secondary: #0F4C75;
+  --color-primary: #3282B8;
+  --color-light: #BBE1FA;
+  --color-accent: rgba(255, 0, 0, 0.71);
+  --text-light: #ffffff;
+  --text-dark: #1B262C;
 }
